@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Am I ?</title>
+</head>
+<body>
+    <div class="div">
+        <h3 id="user-Name">Maybe</h3>
+        <button id="reload" onclick="reload()">Reload</button>
+    </div>
+
+    <style>
+        .div{
+            height: 100px;
+            width: 500px;
+            background-color: rgb(240, 240, 240);
+            margin: auto;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px rgb(185, 185, 185);
+
+        }
+
+        #user-Name{
+            width: 300px;
+            height: 30px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px grey;
+            margin: auto;
+            padding: 5px 15px;
+            padding-top: 10px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: beige;
+            background-image: linear-gradient(45deg, rgb(49, 255, 245) ,rgb(255, 82, 111), rgb(255, 243, 78));
+        }
+
+        #reload{
+            display: flex;
+            margin: 15px auto;
+            width: 120px;
+            height: 40px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px grey;
+            padding: 10px 10px;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            background-color: rgb(62, 190, 111);
+        }
+    </style>
+
+    <script> // reload function //
+    function reload (){
+        location.reload();
+    }
+    </script>
+
+    <script> // API //
+        fetch('https://randomuser.me/api')
+        .then(res => res.json())
+        .then(data => {
+            const user = data.results[0];
+            const name = user.name;
+            const userName = `${name.title} ${name.first} ${name.last}`;
+            document.getElementById('user-Name').innerText = userName;
+        })
+    </script>
+    
+</body> 
+</html>
